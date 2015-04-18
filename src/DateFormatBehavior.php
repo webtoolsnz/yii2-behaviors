@@ -4,6 +4,7 @@ namespace webtoolsnz\behaviors;
 use Yii;
 use yii\base\Behavior;
 use yii\base\Model;
+use yii\validators\DateValidator;
 
 /**
  * DateFormatBehavior automatically converts the specified date fields from one format to another.
@@ -42,12 +43,35 @@ class DateFormatBehavior extends Behavior
     public $attributes = [];
 
     /**
-     *
-     *
+     * Format to save the date to
      * @var string
      */
     public $saveFormat = 'YYYY-MM-dd';
+
+    /**
+     * Format dates are displayed/input as, if null
+     * `Yii::$app->formatter->dateFormat` is used.
+     * @var null
+     */
+    public $displayFormat = null;
+
+    /**
+     * Event that triggers the attribute conversion.
+     * @var string
+     */
     public $event = Model::EVENT_BEFORE_VALIDATE;
+
+    /**
+     * @inheritdoc
+     */
+    public function init()
+    {
+        if (!$this->displayFormat) {
+            $this->displayFormat = Yii::$app->formatter->dateFormat;
+        }
+
+        parent::init();
+    }
 
     /**
      * @inheritdoc
@@ -65,18 +89,33 @@ class DateFormatBehavior extends Behavior
      */
     public function convertFormat($value)
     {
-        $nullDate = Yii::$app->formatter->asDate(0, $this->saveFormat);
-
-        try {
-            $output = Yii::$app->formatter->asDate($value, $this->saveFormat);
-        } catch (\yii\base\InvalidParamException $e) {
-            $output = false;
+        if ($this->validateDate($value)) {
+            $nullDate = Yii::$app->formatter->asDate(0, $this->saveFormat);
+            try {
+                $output = Yii::$app->formatter->asDate($value, $this->saveFormat);
+            } catch (\yii\base\InvalidParamException $e) {
+                $output = false;
+            }
         }
 
-        return ($nullDate !== $output) ? $output : false;
+        return (isset($output) && $nullDate !== $output) ? $output : false;
     }
 
     /**
+     * Validate the given date string against the `displayFormat`
+     *
+     * @param $value
+     * @return bool
+     */
+    public function validateDate($value)
+    {
+        $validator = new DateValidator;
+        $validator->format = $this->displayFormat;
+        return $validator->validate($value);
+    }
+
+    /**
+     *
      * @param $event
      */
     public function convertAttributes($event)
