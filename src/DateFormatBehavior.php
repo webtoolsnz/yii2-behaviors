@@ -66,7 +66,12 @@ class DateFormatBehavior extends Behavior
     public function convertFormat($value)
     {
         $nullDate = Yii::$app->formatter->asDate(0, $this->saveFormat);
-        $output = Yii::$app->formatter->asDate($value, $this->saveFormat);
+
+        try {
+            $output = Yii::$app->formatter->asDate($value, $this->saveFormat);
+        } catch (\yii\base\InvalidParamException $e) {
+            $output = false;
+        }
 
         return ($nullDate !== $output) ? $output : false;
     }
