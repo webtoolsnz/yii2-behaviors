@@ -5,6 +5,7 @@ use Yii;
 use yii\base\Behavior;
 use yii\base\Model;
 use yii\validators\DateValidator;
+use yii\helpers\FormatConverter;
 
 /**
  * DateFormatBehavior automatically converts the specified date fields from one format to another.
@@ -46,7 +47,7 @@ class DateFormatBehavior extends Behavior
      * Format to save the date to
      * @var string
      */
-    public $saveFormat = 'YYYY-MM-dd';
+    public $saveFormat = 'yyyy-MM-dd';
 
     /**
      * Format dates are displayed/input as, if null
@@ -70,6 +71,9 @@ class DateFormatBehavior extends Behavior
             $this->displayFormat = Yii::$app->formatter->dateFormat;
         }
 
+        $this->displayFormat = FormatConverter::convertDateIcuToPhp($this->displayFormat);
+        $this->saveFormat = FormatConverter::convertDateIcuToPhp($this->saveFormat);
+
         parent::init();
     }
 
@@ -89,29 +93,8 @@ class DateFormatBehavior extends Behavior
      */
     public function convertFormat($value)
     {
-        if ($this->validateDate($value)) {
-            $nullDate = Yii::$app->formatter->asDate(0, $this->saveFormat);
-            try {
-                $output = Yii::$app->formatter->asDate($value, $this->saveFormat);
-            } catch (\yii\base\InvalidParamException $e) {
-                $output = false;
-            }
-        }
-
-        return (isset($output) && $nullDate !== $output) ? $output : false;
-    }
-
-    /**
-     * Validate the given date string against the `displayFormat`
-     *
-     * @param $value
-     * @return bool
-     */
-    public function validateDate($value)
-    {
-        $validator = new DateValidator;
-        $validator->format = $this->displayFormat;
-        return $validator->validate($value);
+        $date = \DateTime::createFromFormat($this->displayFormat, $value);
+        return $date ? $date->format($this->saveFormat) : false;
     }
 
     /**
