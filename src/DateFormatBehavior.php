@@ -91,7 +91,7 @@ class DateFormatBehavior extends Behavior
      * @param $value
      * @return bool|string
      */
-    public function convertFormat($value)
+    public function convertDateFormat($value)
     {
         $date = \DateTime::createFromFormat($this->displayFormat, $value);
         return $date ? $date->format($this->saveFormat) : false;
@@ -104,7 +104,7 @@ class DateFormatBehavior extends Behavior
     public function convertAttributes($event)
     {
         foreach($this->owner->attributes as $name => $value) {
-            if (in_array($name, $this->attributes) && false !== ($date = $this->convertFormat($value))) {
+            if (in_array($name, $this->attributes) && false !== ($date = $this->convertDateFormat($value))) {
                 $this->owner->{$name} = $date;
             }
         }
