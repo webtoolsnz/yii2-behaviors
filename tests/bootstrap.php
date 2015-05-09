@@ -1,5 +1,7 @@
 <?php
 
+date_default_timezone_set('UTC');
+
 // ensure we get report on all possible php errors
 error_reporting(-1);
 
