@@ -52,9 +52,9 @@ class DateFormatBehavior extends Behavior
     /**
      * Format dates are displayed/input as, if null
      * `Yii::$app->formatter->dateFormat` is used.
-     * @var null
+     * @var string
      */
-    public $displayFormat = null;
+    public $displayFormat;
 
     /**
      * Event that triggers the attribute conversion.
@@ -101,7 +101,7 @@ class DateFormatBehavior extends Behavior
      *
      * @param $event
      */
-    public function convertAttributes($event)
+    public function convertAttributes()
     {
         foreach($this->owner->attributes as $name => $value) {
             if (in_array($name, $this->attributes) && false !== ($date = $this->convertDateFormat($value))) {
