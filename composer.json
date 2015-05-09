@@ -21,7 +21,8 @@
   },
   "autoload": {
     "psr-4": {
-      "webtoolsnz\\behaviors\\": "src"
+      "webtoolsnz\\behaviors\\": "src",
+      "webtoolsnz\\behaviors\\tests\\": "tests"
     }
   }
 }
