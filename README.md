@@ -1,5 +1,9 @@
-Behaviors
-=======
+# Behaviors
+
+
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/b/webtoolsnz/yii2-behaviors/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/b/webtoolsnz/yii2-behaviors/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/b/webtoolsnz/yii2-behaviors/badges/coverage.png?b=master)](https://scrutinizer-ci.com/b/webtoolsnz/yii2-behaviors/?branch=master)
+[![Build Status](https://drone.io/bitbucket.org/webtoolsnz/yii2-behaviors/status.png)](https://drone.io/bitbucket.org/webtoolsnz/yii2-behaviors/latest)
 
 A collection of Yii2 behaviors by Webtools.
 
@@ -33,4 +37,3 @@ or add
 ~~~
 
 to the require section of your `composer.json` file.
-
