@@ -71,8 +71,8 @@ class DateFormatBehavior extends Behavior
             $this->displayFormat = Yii::$app->formatter->dateFormat;
         }
 
-        //$this->displayFormat = FormatConverter::convertDateIcuToPhp($this->displayFormat);
-        //$this->saveFormat = FormatConverter::convertDateIcuToPhp($this->saveFormat);
+        $this->displayFormat = FormatConverter::convertDateIcuToPhp($this->displayFormat);
+        $this->saveFormat = FormatConverter::convertDateIcuToPhp($this->saveFormat);
 
         parent::init();
     }
