@@ -1,9 +1,8 @@
 # Behaviors
 
-
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/b/webtoolsnz/yii2-behaviors/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/b/webtoolsnz/yii2-behaviors/?branch=master)
-[![Code Coverage](https://scrutinizer-ci.com/b/webtoolsnz/yii2-behaviors/badges/coverage.png?b=master)](https://scrutinizer-ci.com/b/webtoolsnz/yii2-behaviors/?branch=master)
-[![Build Status](https://drone.io/bitbucket.org/webtoolsnz/yii2-behaviors/status.png)](https://drone.io/bitbucket.org/webtoolsnz/yii2-behaviors/latest)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/webtoolsnz/yii2-behaviors/badges/quality-score.png?b=master&s=9034c6033ff0b7f55576489f027afb16e6ae01a5)](https://scrutinizer-ci.com/g/webtoolsnz/yii2-behaviors/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/webtoolsnz/yii2-behaviors/badges/coverage.png?b=master&s=1c8b259833b7cc449f81b1cf606da9a76e89e7fc)](https://scrutinizer-ci.com/g/webtoolsnz/yii2-behaviors/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/webtoolsnz/yii2-behaviors/badges/build.png?b=master&s=268517654a9e1db4f045851cc9945e0c8b72cc16)](https://scrutinizer-ci.com/g/webtoolsnz/yii2-behaviors/build-status/master)
 
 A collection of Yii2 behaviors by Webtools.
 
